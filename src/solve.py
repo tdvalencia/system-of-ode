@@ -1,9 +1,9 @@
 import numpy as np
 from matplotlib import pyplot as plt
 
-STEP_SIZE = deltat = 0.5
+STEP_SIZE = deltat = 0.0001
 Lx = []; Ly = []
-x0 = 0; y0 = 3
+x0 = -5; y0 = 4
 
 def dxdt(x, y):
     return x + y
@@ -20,5 +20,7 @@ def eulerdt(t0, tf):
 
 if __name__ == '__main__':
     eulerdt(-1, 1)
+    print(f'Lx: {Lx}')
+    print(f'Ly: {Ly}')
     plt.plot(Lx, Ly)
     plt.show()
