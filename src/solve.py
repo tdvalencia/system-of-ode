@@ -19,7 +19,7 @@ def eulerdt(t0, tf):
         y = y + dydt(x, y) * deltat
 
 if __name__ == '__main__':
-    eulerdt(-1, 1)
+    eulerdt(0, 1)
     print(f'Lx: {Lx}')
     print(f'Ly: {Ly}')
     plt.plot(Lx, Ly)
