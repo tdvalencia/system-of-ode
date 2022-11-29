@@ -1,26 +1,55 @@
 import numpy as np
 from matplotlib import pyplot as plt
 
-STEP_SIZE = deltat = 0.0001
-Lx = []; Ly = []
-x0 = -5; y0 = 4
-
+# Function Definitions
 def dxdt(x, y):
     return x + y
 
 def dydt(x, y):
     return x - y
 
-def eulerdt(t0, tf):
+# Euler's method: deltay ~= (dy/dx)deltax
+def eulerdt(x0, y0, t0, tf, deltat):
+    Lx = []; Ly = []
     x = x0; y = y0
     for t in np.arange(t0, tf, deltat):
         Lx.append(x); Ly.append(y)
-        x = x + dxdt(x, y) * deltat
-        y = y + dydt(x, y) * deltat
+        
+        # Recalculate x and y
+        x = x + dxdt(x,y) * deltat
+        y = y + dydt(x,y) * deltat
 
+    return Lx, Ly
+
+
+# Run and Plot
 if __name__ == '__main__':
-    eulerdt(0, 1)
-    print(f'Lx: {Lx}')
-    print(f'Ly: {Ly}')
+
+    # Initial Values
+    deltat = 0.0001 # step size
+    x0 = 0; y0 = -0.5
+    t0 = 0; tf = 2
+
+    # Euler Method
+    Lx, Ly = eulerdt(x0, y0, t0, tf, deltat)
+    # print(f'Lx: {Lx}'); print(f'Ly: {Ly}')
     plt.plot(Lx, Ly)
+
+    # Slope Field
+    nx, ny = 0.2, 0.2
+    x = np.arange(-3, 3, nx)
+    y = np.arange(-2, 2, ny)
+
+    X, Y = np.meshgrid(x, y)
+
+    dy = dydt(X,Y)
+    dx = dxdt(X,Y)
+
+    plt.quiver(X, Y, dx, dy, color='purple')
+
+    # Plot Options
+    plt.grid()
+    plt.title('y(x)')
+    plt.xlabel('x')
+    plt.ylabel('y')
     plt.show()
