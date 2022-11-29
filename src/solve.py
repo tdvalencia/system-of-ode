@@ -14,7 +14,7 @@ def eulerdt(x0, y0, t0, tf, deltat):
     x = x0; y = y0
     for t in np.arange(t0, tf, deltat):
         Lx.append(x); Ly.append(y)
-        
+
         # Recalculate x and y
         x = x + dxdt(x,y) * deltat
         y = y + dydt(x,y) * deltat
@@ -27,8 +27,8 @@ if __name__ == '__main__':
 
     # Initial Values
     deltat = 0.0001 # step size
-    x0 = 0; y0 = -0.5
-    t0 = 0; tf = 2
+    x0 = -1; y0 = 1.5
+    t0 = 0; tf = 1.5
 
     # Euler Method
     Lx, Ly = eulerdt(x0, y0, t0, tf, deltat)
@@ -36,7 +36,7 @@ if __name__ == '__main__':
     plt.plot(Lx, Ly)
 
     # Slope Field
-    nx, ny = 0.2, 0.2
+    nx, ny = 0.4, 0.4
     x = np.arange(-3, 3, nx)
     y = np.arange(-2, 2, ny)
 
