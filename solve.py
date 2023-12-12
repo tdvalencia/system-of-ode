@@ -36,9 +36,9 @@ if __name__ == '__main__':
     plt.plot(Lx, Ly)
 
     # Slope Field
-    nx, ny = 0.4, 0.4
-    x = np.arange(-3, 3, nx)
-    y = np.arange(-2, 2, ny)
+    nx, ny = 0.2, 0.2
+    x = np.arange(-4, 4, nx)
+    y = np.arange(-3, 3, ny)
 
     X, Y = np.meshgrid(x, y)
 
@@ -49,6 +49,8 @@ if __name__ == '__main__':
 
     # Plot Options
     plt.grid()
+    plt.xlim([-3,3])
+    plt.ylim([-2,2])
     plt.title('y(x)')
     plt.xlabel('x')
     plt.ylabel('y')
